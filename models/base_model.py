@@ -9,9 +9,9 @@ from . import storage
 
 
 class BaseModel:
-    """basemodel class"""
+    """ basemodel class"""
     def __init__(self, *args, **kwargs):
-        """init funciton"""
+        """ init funciton"""
         s = "%Y-%m-%dT%H:%M:%S.%f"
         self.id = str(uuid.uuid4())
         self.created_at = datetime.datetime.now()
@@ -30,8 +30,10 @@ class BaseModel:
 
     def __str__(self):
         """str function"""
-        return("[{}] ({}) {}".format(self.__class__.__name__,
-                                     self.id, self.__dict__))
+        fst = "BaseModel"
+        snd = self.id
+        trd = self.__dict__
+        return "[{}] ({}) {}".format(fst, snd, trd)
 
     def save(self):
         """save function"""
