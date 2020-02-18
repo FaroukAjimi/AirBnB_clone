@@ -3,7 +3,7 @@
 """Module That contains FileStorage class"""
 
 import json
-
+from models.base_model import BaseModel
 
 class FileStorage:
     """class Filestorage"""
@@ -32,10 +32,8 @@ class FileStorage:
         """reload function"""
         try:
             with open(self.__file_path, 'r') as file:
-                data = file.read()
-                d = json.loads(data)
-                from models.base_model import BaseModel
-                for value in d.values():
+                data = json.load(file)
+                for value in data.values():
                     obj = BaseModel(**value)
                     self.new(obj)
         except:

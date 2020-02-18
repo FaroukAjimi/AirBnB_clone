@@ -5,7 +5,7 @@
 import datetime
 import uuid
 import json
-from . import storage
+import models
 
 
 class BaseModel:
@@ -26,7 +26,7 @@ class BaseModel:
             self.updated_at = datetime.datetime.strptime(kwargs['updated_at'],
                                                          s)
         else:
-            storage.new(self)
+            models.storage.new(self)
 
     def __str__(self):
         """str function"""
@@ -38,8 +38,8 @@ class BaseModel:
     def save(self):
         """save function"""
         self.updated_at = datetime.datetime.now()
-        storage.new(self)
-        storage.save()
+        models.storage.new(self)
+        models.storage.save()
 
     def to_dict(self):
         """to dict function"""
