@@ -41,9 +41,7 @@ class BaseModel:
 
     def to_dict(self):
         """to dict function"""
-        my_dict = {}
-        for key, value in self.__dict__.items():
-            my_dict[key] = value
+        my_dict = self.__dict__.copy()
         my_dict['created_at'] = self.created_at.isoformat()
         my_dict['updated_at'] = self.updated_at.isoformat()
         my_dict['__class__'] = self.__class__.__name__
