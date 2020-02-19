@@ -82,7 +82,11 @@ class HBNBCommand(cmd.Cmd):
             if (ifclass(args[0]) and
                 issubclass(eval(args[0]), BaseModel) is True):
                 if len(args) > 1:
-                    del FileStorage().all()[args[0]+ '.' + args[1]]
+                    try:
+                        del storage.all()[args[0]+ '.' + args[1]]
+                        storage.save()
+                    except:
+                        pass
                 else:
                     print("** instance id missing **")
             else:
@@ -92,13 +96,17 @@ class HBNBCommand(cmd.Cmd):
         """ print all objs
         """
         if name == "":
+            dic = []
             for k, v in storage.all().items():
-                print (v)
+                dic.append(str(v))
+            print (dic)
         else:
             if (ifclass(name) and issubclass(eval(name), BaseModel) is True):
+                dic = []
                 for k, v in storage.all().items():
                     if name == k.split(".")[0]:
-                        print (v)
+                        dic.append(str(v))
+                print (dic)
             else:
                 print("** class doesn't exist **")
 
