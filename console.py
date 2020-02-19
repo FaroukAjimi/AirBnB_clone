@@ -82,11 +82,16 @@ class HBNBCommand(cmd.Cmd):
             if (ifclass(args[0]) and
                 issubclass(eval(args[0]), BaseModel) is True):
                 if len(args) > 1:
-                    try:
+                    test = False
+                    for k,v in storage.all().items():
+                        Id = k.split('.')[1]
+                        if Id == args[1]:
+                            test = True
+                    if test == False:
+                        print("** no instance found **")
+                    else:
                         del storage.all()[args[0]+ '.' + args[1]]
                         storage.save()
-                    except:
-                        pass
                 else:
                     print("** instance id missing **")
             else:
