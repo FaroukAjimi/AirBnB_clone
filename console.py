@@ -66,7 +66,7 @@ class HBNBCommand(cmd.Cmd):
                             print(str(v))
                             test = True
                     if test is False:
-                        print("** instance id missing **")
+                        print("** no instance found **")
                 else:
                     print("** instance id missing **")
             else:
@@ -126,11 +126,11 @@ class HBNBCommand(cmd.Cmd):
                             key = args[0] + '.' + args[1]
                             obj = storage.all()
                             if key in obj:
-                                spl = args[3].split('"')
+                                spl = name.split('"')
                                 if len(spl) == 1:
                                     print("** value missing **")
                                 else:
-                                    setattr(obj[key], args[2], args[3].split('"')[1])
+                                    setattr(obj[key], args[2], spl[1])
                                     storage.save()
                     else:
                        print("** attribute name missing **")
