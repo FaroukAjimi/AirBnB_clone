@@ -1,7 +1,5 @@
 # AirBnB_clone - the console
 
-![H|hbnb](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUZGDONYM4%2F20200219%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200219T192815Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=bb33ea0e77d01b0ea7142179aa9d49151053fe42fcac182394c74103c0e5b337)
-
 
 ### Description
 The console is a command line interpreter that takes a command written as input, interprets it and executes it.
