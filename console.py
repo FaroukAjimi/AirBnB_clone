@@ -68,12 +68,11 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
         else:
-            if (
-                    ifclass(args[0]) and
-                    issubclass(eval(args[0]), BaseModel) is True):
+            if (ifclass(args[0]) and issubclass(eval(args[0]),
+                                                BaseModel) is True):
                 if len(args) > 1:
                     test = False
-                    for k,v in FileStorage().all().items():
+                    for k, v in FileStorage().all().items():
                         Id = k.split('.')[1]
                         if Id == args[1]:
                             print(str(v))
@@ -92,18 +91,18 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
         else:
-            if (ifclass(args[0]) and
-                issubclass(eval(args[0]), BaseModel) is True):
+            if (ifclass(args[0]) and issubclass(eval(args[0]),
+                                                BaseModel) is True):
                 if len(args) > 1:
                     test = False
-                    for k,v in storage.all().items():
+                    for k, v in storage.all().items():
                         Id = k.split('.')[1]
                         if Id == args[1]:
                             test = True
-                    if test == False:
+                    if test is False:
                         print("** no instance found **")
                     else:
-                        del storage.all()[args[0]+ '.' + args[1]]
+                        del storage.all()[args[0] + '.' + args[1]]
                         storage.save()
                 else:
                     print("** instance id missing **")
@@ -135,11 +134,11 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
         else:
-            if (ifclass(args[0]) and
-                issubclass(eval(args[0]), BaseModel) is True):
+            if (ifclass(args[0]) and issubclass(eval(args[0]),
+                                                BaseModel) is True):
                 if len(args) > 1:
                     test = False
-                    for k,v in storage.all().items():
+                    for k, v in storage.all().items():
                         Id = k.split('.')[1]
                         if Id == args[1]:
                             test = True
@@ -159,7 +158,7 @@ class HBNBCommand(cmd.Cmd):
                                     setattr(obj[key], args[2], spl[1])
                                     storage.save()
                     else:
-                       print("** attribute name missing **")
+                        print("** attribute name missing **")
 
                 else:
                     print("** instance id missing **")
