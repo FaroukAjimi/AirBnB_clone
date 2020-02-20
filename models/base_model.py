@@ -12,6 +12,7 @@ class BaseModel:
     """basemodel class"""
     def __init__(self, *args, **kwargs):
         """init funciton"""
+        s = "%Y-%m-%dT%H:%M:%S.%f"
         self.id = str(uuid.uuid4())
         self.created_at = datetime.datetime.now()
         self.updated_at = datetime.datetime.now()
@@ -20,14 +21,17 @@ class BaseModel:
                 if key != '__class__':
                     setattr(self, key, value)
             self.__class__.__name__ = kwargs['__class__']
-            self.created_at = datetime.datetime.strptime(kwargs['created_at'],"%Y-%m-%dT%H:%M:%S.%f")
-            self.updated_at = datetime.datetime.strptime(kwargs['updated_at'],"%Y-%m-%dT%H:%M:%S.%f")
+            self.created_at = datetime.datetime.strptime(kwargs['created_at'],
+                                                         s)
+            self.updated_at = datetime.datetime.strptime(kwargs['updated_at'],
+                                                         s)
         else:
             storage.new(self)
 
     def __str__(self):
         """str function"""
-        return("[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__))
+        return("[{}] ({}) {}".format(self.__class__.__name__,
+                                     self.id, self.__dict__))
 
     def save(self):
         """save function"""
