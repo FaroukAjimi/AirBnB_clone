@@ -40,12 +40,13 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, name):
         """ Do_create creates another <name> object
         """
+        args = ['BaseModel', 'User']
         if name is None or name == "":
             print("** class name missing **")
-        elif name != "BaseModel":
+        elif name not in args:
             print("** class doesn't exist **")
         else:
-            new = BaseModel()
+            new = eval(name)()
             new.save()
             print(new.id)
 
