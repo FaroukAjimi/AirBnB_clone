@@ -1,23 +1,26 @@
 #!/usr/bin/python3
-import datetime
-import uuid
+
+"""Module That contains FileStorage class"""
+
 import json
+
+
 class FileStorage:
+    """class Filestorage"""
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
+        """all function"""
         return(FileStorage.__objects)
 
     def new(self, obj):
-        key = obj.__class__.__name__ +'.'+ obj.id
+        """new function"""
+        key = obj.__class__.__name__ + '.' + obj.id
         FileStorage.__objects[key] = obj
-        print()
-        print("im in new and objects are")
-        print(FileStorage.__objects)
-        print()
 
     def save(self):
+        """save function"""
         dit = {}
         for key, value in FileStorage.__objects.items():
             dit[key] = value.to_dict()
@@ -26,15 +29,14 @@ class FileStorage:
             file.write(strdata)
 
     def reload(self):
+        """reload function"""
         try:
             with open(self.__file_path, 'r') as file:
-                data = f.read()
+                data = file.read()
                 d = json.loads(data)
+                from models.base_model import BaseModel
                 for value in d.values():
                     obj = BaseModel(**value)
-                    print()
-                    print("in reload and obj is")
-                    print(obj)
                     self.new(obj)
         except:
             pass

@@ -1,34 +1,42 @@
 #!/usr/bin/python3
+
+""" module that contains basemodel"""
+
 import datetime
 import uuid
 import json
 from . import storage
+
+
 class BaseModel:
+    """basemodel class"""
     def __init__(self, *args, **kwargs):
+        """init funciton"""
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.datetime.now()
+        self.updated_at = datetime.datetime.now()
         if kwargs:
             for key, value in kwargs.items():
                 if key != '__class__':
-                    self.key = value
+                    setattr(self, key, value)
             self.__class__.__name__ = kwargs['__class__']
-            self.created_at = datetime.datetime.strptime(kwargs['created_at'], "%Y-%m-%dT%H:%M:%S.%f")
-            self.updated_at = datetime.datetime.strptime(kwargs['updated_at'], "%Y-%m-%dT%H:%M:%S.%f")
-            print("\nim in init kwargs\n")
+            self.created_at = datetime.datetime.strptime(kwargs['created_at'],"%Y-%m-%dT%H:%M:%S.%f")
+            self.updated_at = datetime.datetime.strptime(kwargs['updated_at'],"%Y-%m-%dT%H:%M:%S.%f")
         else:
-            self.id = str(uuid.uuid4())
-            self.created_at =  datetime.datetime.now()
-            self.updated_at  = datetime.datetime.now()
             storage.new(self)
-            print("I'm in init base model new instance")
-            
+
     def __str__(self):
+        """str function"""
         return("[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__))
 
     def save(self):
+        """save function"""
         self.updated_at = datetime.datetime.now()
         storage.new(self)
         storage.save()
 
     def to_dict(self):
+        """to dict function"""
         my_dict = {}
         for key, value in self.__dict__.items():
             my_dict[key] = value
