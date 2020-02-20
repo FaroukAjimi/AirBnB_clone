@@ -13,9 +13,8 @@ class HBNBCommand(cmd.Cmd):
         return True
     def emptyline(self):
         pass
-        def do_create(self, line):
-            {
-                
-            }
+    def do_create(self, line):
+        {
+        }
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
