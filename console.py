@@ -26,6 +26,7 @@ def ifclass(str):
 
 
 class HBNBCommand(cmd.Cmd):
+    """Class HBNB"""
     prompt = '(hbnb) '
 
     def do_quit(self, line):
