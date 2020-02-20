@@ -4,6 +4,7 @@
 
 
 import cmd
+from models.user import User
 from models import storage
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
@@ -152,7 +153,7 @@ class HBNBCommand(cmd.Cmd):
                     print("** instance id missing **")
             else:
                 print("** class doesn't exist **")
-        
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
