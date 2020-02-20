@@ -5,6 +5,11 @@
 
 import cmd
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 from models import storage
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
@@ -40,7 +45,13 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, name):
         """ Do_create creates another <name> object
         """
-        args = ['BaseModel', 'User']
+        args = ['BaseModel',
+                'User',
+                'State',
+                'City',
+                'Amenity',
+                'Place',
+                'Review']
         if name is None or name == "":
             print("** class name missing **")
         elif name not in args:
