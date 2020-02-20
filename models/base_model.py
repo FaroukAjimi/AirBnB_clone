@@ -30,7 +30,7 @@ class BaseModel:
 
     def __str__(self):
         """str function"""
-        fst = "BaseModel"
+        fst = self.__class__.__name__
         snd = self.id
         trd = self.__dict__
         return "[{}] ({}) {}".format(fst, snd, trd)
