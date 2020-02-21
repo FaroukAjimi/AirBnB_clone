@@ -1,15 +1,23 @@
 #!/usr/bin/python3
+
+"""module that contains the console"""
+
+
 import cmd
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 import inspect
 
+
 def ifclass(str):
+    """function ifclass"""
     try:
         v = inspect.isclass(eval(str))
         return(v)
     except:
         return False
+
+
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
@@ -22,14 +30,10 @@ class HBNBCommand(cmd.Cmd):
         """ Quit command to exit the program
         """
         return True
-    
+
     def emptyline(self):
+        """empty line function"""
         pass
-<<<<<<< HEAD
-    def do_create(self, line):
-        {
-        }
-=======
 
     def do_create(self, name):
         """ Do_create creates another <name> object
@@ -51,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             if (
-                    ifclass(args[0]) and     
+                    ifclass(args[0]) and
                     issubclass(eval(args[0]), BaseModel) is True):
                 if len(args) > 1:
                     for k,v in FileStorage().all().items():
@@ -62,7 +66,37 @@ class HBNBCommand(cmd.Cmd):
                     print("** instance id missing **")
             else:
                 print("** class doesn't exist **")
-  
->>>>>>> bb33fc56d74dbc4392c19587e5648facf7cfb801
+
+    def do_destroy(self, name):
+        """ destroy instances of an obj
+        """
+        args = name.split()
+        if len(args) == 0:
+            print("** class name missing **")
+        else:
+            if (ifclass(args[0]) and
+                issubclass(eval(args[0]), BaseModel) is True):
+                if len(args) > 1:
+                    del FileStorage().all()[args[0]+ '.' + args[1]]
+                else:
+                    print("** instance id missing **")
+            else:
+                print("** class doesn't exist **")
+
+    def do_all(self, name=""):
+        if name == "":
+            for k, v in FileStorage().all().items():
+                print (v)
+        else:
+            if (ifclass(name) and issubclass(eval(name), BaseModel) is True):
+                for k, v in FileStorage().all().items():
+                    if name == k.split(".")[0]:
+                        print (v)
+            else:
+                print("** class doesn't exist **")
+
+    def do_update(self, name):
+        args = name.split()
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
