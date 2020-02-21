@@ -117,14 +117,14 @@ class HBNBCommand(cmd.Cmd):
             dic = []
             for k, v in storage.all().items():
                 dic.append(str(v))
-            print (dic)
+            print(dic)
         else:
             if (ifclass(name) and issubclass(eval(name), BaseModel) is True):
                 dic = []
                 for k, v in storage.all().items():
                     if name == k.split(".")[0]:
                         dic.append(str(v))
-                print (dic)
+                print(dic)
             else:
                 print("** class doesn't exist **")
 
