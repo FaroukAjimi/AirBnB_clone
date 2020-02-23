@@ -37,11 +37,9 @@ class FileStorage:
 
     def reload(self):
         """reload function"""
-        try:
-            with open(self.__file_path, 'r') as file:
-                data = json.load(file)
-                for k, v in data.items():
-                    obj = eval(k.split('.')[0])(**value)
-                    self.new(obj)
-        except:
-            pass
+        with open(self.__file_path, 'r') as file:
+            data = json.load(file)
+            print("type :",type(data))
+            for k, v in data.items():
+                obj = eval(k.split('.')[0])(**v)
+                self.new(obj)
