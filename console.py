@@ -69,13 +69,16 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
         else:
-            if (ifclass(args[0]) and issubclass(eval(args[0]),
-                                                BaseModel) is True):
+            if (ifclass(args[0]) and 
+                issubclass(eval(args[0]), BaseModel) is True):
                 if len(args) > 1:
                     test = False
-                    for k, v in FileStorage().all().items():
-                        Id = k.split('.')[1]
-                        if Id == args[1]:
+                    for k, v in storage.all().items():
+                        t_id = k.split('.')[1]
+                        t_name = k.split('.')[0]
+                        if t_id == args[1] and t_name == args[0]:
+                            print("alla ", k.split('.')[1])
+                            print("allla2 ", k.split('.')[0])
                             print(str(v))
                             test = True
                     if test is False:
@@ -97,8 +100,9 @@ class HBNBCommand(cmd.Cmd):
                 if len(args) > 1:
                     test = False
                     for k, v in storage.all().items():
-                        Id = k.split('.')[1]
-                        if Id == args[1]:
+                        t_id = k.split('.')[1]
+                        t_name = k.split('.')[0]
+                        if t_id == args[1] and t_name == args[0]:
                             test = True
                     if test is False:
                         print("** no instance found **")
