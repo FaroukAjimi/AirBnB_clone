@@ -1,0 +1,26 @@
+.filters{
+    background-color: white;
+    height: 70px;
+    width: 100%;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    display: felx;
+    justify-content: flex-end;
+    align-items: center;
+}
+.filters button{
+    font-size: 18px;
+    background-color: #FF5A5F;
+    color: #FFFFFF;
+    height: 48px;
+    width: 20%;
+    border: 0;
+    border-radius: 4px;
+    float: right;
+    text-align: center;
+    margin-right: 30px;
+    vertical-align: middle;
+}
+.filters button:hover{
+    opacity: 0.9;
+}
